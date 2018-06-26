@@ -24,7 +24,7 @@ namespace smoothie_shack.Controllers
         // GET api/smoothies/5
         [HttpGet("{id}")]
         public IPurchasable Get(int id)
-        {
+        { 
             if (id > -1 && id < Menu.Count)
             {
                 return Menu[id];
