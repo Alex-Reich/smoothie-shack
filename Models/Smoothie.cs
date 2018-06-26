@@ -6,6 +6,7 @@ namespace smoothie_shack.Models
 {
     public class Smoothie : IPurchasable
     {
+        public int Id { get; set; }
         [Required]
         [Range(1, 100)]
         public decimal Price { get; set; }

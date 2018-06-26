@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using smoothie_shack.Models;
-using smoothie_shack.Interfaces;
+using smoothie_shack.Repositories;
 
 namespace smoothie_shack.Controllers
 {
@@ -12,45 +12,44 @@ namespace smoothie_shack.Controllers
     [ApiController]
     public class MenusController : ControllerBase
     {
-        List<IPurchasable> Menu = Program.MenuItems;
-
-        // GET api/smoothies
-        [HttpGet]
-        public IEnumerable<IPurchasable> Get()
+        // List<Menu> Menus = Program.Menus;
+        private readonly MenuRepository db;
+        public MenusController(MenuRepository repo)
         {
-            return Menu;
+            db = repo;
+        }
+        // GET api/menus
+        [HttpGet]
+        public IEnumerable<Menu> Get()
+        {
+            return db.GetAll();
         }
 
-        // GET api/smoothies/5
+        // GET api/menus/5
         [HttpGet("{id}")]
-        public IPurchasable Get(int id)
-        { 
-            if (id > -1 && id < Menu.Count)
-            {
-                return Menu[id];
-            }
-            return null;
+        public Menu Get(int id)
+        {
+            return db.GetById(id);
         }
 
-        // POST api/smoothies
+        // POST api/menus
         [HttpPost]
-        public List<IPurchasable> Post([FromBody]IPurchasable newMenuItem)
+        public Menu Post([FromBody]Menu newMenu)
         {
             if (ModelState.IsValid)
             {
-                Menu.Add(newMenuItem);
-                return Menu;
+              return db.AddMenu(newMenu);
             }
             return null;
         }
 
-        // PUT api/smoothies/5
+        // PUT api/menus/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/smoothies/5
+        // DELETE api/menus/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
