@@ -15,7 +15,7 @@ namespace smoothie_shack.Models
     [MaxLength(100)]
     public string Name { get; set; }
     public string Description {get; set;}
-    List<string> Ingredients {get; set;} 
+    public List<string> Ingredients {get; set;} 
 
 
     public Sandwich(decimal price, string name, string description, List<string> ingredients)
