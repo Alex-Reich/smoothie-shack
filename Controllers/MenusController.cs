@@ -10,7 +10,7 @@ namespace smoothie_shack.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MenusController : ControllerBase
+    public class MenusController : Controller
     {
         // List<Menu> Menus = Program.Menus;
         private readonly MenuRepository db;
