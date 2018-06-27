@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace smoothie_shack.Models
 {
@@ -7,8 +9,26 @@ namespace smoothie_shack.Models
         public string Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        private string Password { get; set; }
+        public string Password { get; set; }
+        private ClaimsPrincipal _principal { get; set; }
+
         // public List<Smoothie> MyFavs { get; set; }
+
+        public ClaimsPrincipal GetPrincipal()
+        {
+            return _principal;
+        }
+        public void SetClaims()
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, Email),
+                new Claim(ClaimTypes.Name, Id)
+            };
+            var userIdentity = new ClaimsIdentity(claims, "login");
+            _principal = new ClaimsPrincipal(userIdentity);
+            
+        }
 
     }
 
@@ -17,6 +37,14 @@ namespace smoothie_shack.Models
         public string Name { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        
+
+    }
+
+    public class UserLogin
+    {
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+
     }
 }
