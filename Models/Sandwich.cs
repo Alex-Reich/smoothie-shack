@@ -16,15 +16,15 @@ namespace smoothie_shack.Models
         [MaxLength(100)]
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<string> Ingredients { get; set; }
+        // public List<string> Ingredients { get; set; }
 
 
-        public Sandwich(decimal price, string name, string description, List<string> ingredients)
-        {
-            Price = price;
-            Name = name;
-            Description = description;
-            Ingredients = ingredients;
-        }
+        // public Sandwich(decimal price, string name, string description, List<string> ingredients)
+        // {
+        //     Price = price;
+        //     Name = name;
+        //     Description = description;
+        //     Ingredients = ingredients;
+        // }
     }
 }
