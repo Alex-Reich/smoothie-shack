@@ -29,6 +29,7 @@ namespace smoothie_shack.Controllers
             if (ModelState.IsValid)
             {
                 var user = _repo.Login(creds);
+                if (user == null) {return null;}
                 user.SetClaims();
                 await HttpContext.SignInAsync(user.GetPrincipal());
                 return user;

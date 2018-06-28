@@ -51,7 +51,7 @@ namespace smoothie_shack.Repositories
             }
         }
 
-        public object Login(UserLogin creds)
+        public User Login(UserLogin creds)
         {
             var user = GetUserByEmail(creds.Email);
             if (user == null) { return null;}
